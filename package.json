@@ -1,0 +1,42 @@
+{
+  "name": "delightree",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build:watch": "tsc -p tsconfig-build.json --watch",
+    "start": "node dist/main/index.js",
+    "dev": "npm run build && nodemon -L --watch ./dist ./dist/main/index.js",
+    "start:dev": "concurrently --kill-others-on-fail \"npm run build:watch\" \"npm run dev\"",
+    "start:ts": "ts-node --respawn --transpile-only --exit-child ./src/main/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.6.1",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "concurrently": "^9.0.0",
+    "respawn": "^2.6.0",
+    "rimraf": "^5.0.10",
+    "ts-node": "^10.9.2"
+  },
+  "_moduleAliases": {
+    "@delightree/main": "dist/controllers",
+    "@delightree/models": "dist/models",
+    "@delightree/routes": "dist/routes",
+    "@delightree/utils": "dist/utils",
+    "@delightree/controllers": "dist/controllers"
+  }
+}
